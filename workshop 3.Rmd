@@ -1,5 +1,5 @@
 ---
-title: "Workshop 3 - RMarkdown"
+title: "Workshop 3 - RMarkdown and workshop4 - Data Wrangling"
 author: "Naveen Manoharan"
 date: '2022-03-01'
 output: html_document
@@ -15,14 +15,37 @@ library(tidyverse)
 ## Data Wrangling
 
 ```{r}
+survey<-read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv")
 
-#data loading
+country<-survey%>%
+  distinct(country)
 
-data<-read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv")
+survey%>%count(country,sort=TRUE)
 
-data%>%head()
+survey_short<-survey%>%
+  filter(
+    country=="United States" | 
+      country=="USA" |
+      country=="US" |
+      country=="U.S." |
+      country=="United States of America" |
+      country=="Usa")
+
+survey_short%>%filter(
+  annual_salary>50000 & 
+    gender=="Woman")
+
+survey_short%>%
+  select(how_old_are_you, industry, annual_salary, gender)%>%
+  filter(gender=="Woman")%>%
+  count(industry,sort=TRUE)
 
 ```
+
+
+
+
+
 
 
 

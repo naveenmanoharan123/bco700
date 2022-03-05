@@ -1,0 +1,40 @@
+---
+title: "Assessment 1"
+author: "Naveen Manoharan s4644178"
+date: '2022-03-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+```
+
+# RMarkdown editing 
+
+***The RMarkdown package helps us create dynamic analysis documents that combine 
+code, rendered output and prose. It provides a polished document when we input
+data, code and ideas.  Markdown documents can be rendered to many output 
+formats including HTML documents, PDFs, Word files, slideshows, and more.***
+
+Click on this [Link](https://rmarkdown.rstudio.com/lesson-8.html) for RMarkdown
+Basics.
+
+```{r}
+
+##create variable with dataset 
+
+fastfood <- read_csv(
+  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-09-04/fastfood_calories.csv")
+
+##display first 10 rows 
+
+fastfood%>%head(10)
+
+knitr::kable(fastfood[1:10,1:5])
+
+
+```
+

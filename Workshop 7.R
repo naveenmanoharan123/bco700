@@ -74,3 +74,93 @@ coffee_ratings%>%ggplot(aes(total_cup_points))+
 #boxplot - explore your data
 
 coffee_ratings%>%boxplot(total_cup_points)
+
+
+#Session 8
+#variation exploration 
+
+ggplot(data=coffee_ratings)+geom_bar(mapping=aes(x=aroma), fill="navy")
+
+
+coffee_ratings%>%
+  filter(!is.na(aroma))%>%
+  ggplot() + geom_bar(mapping=aes(x=aroma))+ coord_flip()
+
+
+coffee_ratings%>%
+  filter(!is.na(color))%>%
+  ggplot() + geom_bar(mapping=aes(x=color))+ coord_flip()
+
+
+#continuous variables
+coffee_ratings%>%ggplot() + 
+  geom_histogram(mapping=aes(x=cupper_points, binwidth = 0.5))
+
+
+coffee_ratings%>%ggplot() + 
+  geom_histogram(mapping=aes(x=number_of_bags))
+
+
+
+
+#Use Geom_smooth
+
+coffee_ratings%>%
+  ggplot(aes(x=acidity, y=aftertaste, color = species))+
+  geom_point(size = 1.5) +
+  geom_smooth(method = lm, se=FALSE, colour = "blue")
+
+coffee_ratings%>%
+  ggplot(aes(x=acidity, y=aftertaste, color = species))+
+  geom_point(size = 1.5) +
+  geom_smooth(method = lm, se=FALSE, colour = "blue")
+
+
+
+coffee_ratings%>%
+  filter(flavor > 5)%>%
+  ggplot(aes(x=moisture, y=flavor))+
+  geom_point(size = 1.5) +
+  geom_smooth(method = lm, se=FALSE, colour = "blue")
+
+
+#Simple Linear regression
+
+lm(total_cup_points~altitude_mean_meters, data = coffee_ratings)
+
+lm(total_cup_points~altitude_mean_meters + acidity, data = coffee_ratings)
+
+results<-lm(total_cup_points~altitude_mean_meters + acidity, data = coffee_ratings)
+summary(results)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
